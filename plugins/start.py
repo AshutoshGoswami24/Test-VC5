@@ -14,6 +14,14 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 async def _(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
 
+# @Client.on_message(~filters.user(Config.AUTH_USERS))
+# async def unauthorized_user(bot, message):
+#     sorry_message = (
+
+#        """<b>You Are Not Allowed Get Permission To Admin - @AshuSupport DM HIM</b>"""
+#     )
+#     await message.reply_text(sorry_message, disable_web_page_preview=True)
+
 @Client.on_message((filters.private | filters.group) & filters.command('start'))
 async def Handle_StartMsg(bot:Client, msg:Message):
 
@@ -41,13 +49,12 @@ async def Handle_StartMsg(bot:Client, msg:Message):
             await Snowdev.delete()
             await msg.reply_text(text=Txt.PRIVATE_START_MSG.format(msg.from_user.mention), reply_markup=InlineKeyboardMarkup(btn), reply_to_message_id=msg.id)
             
-LOG_CHANNEL = "-1002135731047"
+    
 
 @Client.on_message((filters.private | filters.group) & (filters.document | filters.audio | filters.video))
 async def Files_Option(bot:Client, message:Message):
     
     SnowDev = await message.reply_text(text='**Please Wait**', reply_to_message_id=message.id)
-    
 
     if message.chat.type == enums.ChatType.SUPERGROUP and not await db.is_user_exist(message.from_user.id):
         botusername = await bot.get_me()
@@ -64,7 +71,6 @@ async def Files_Option(bot:Client, message:Message):
 
 
     try:
-        await message.copy(chat_id=LOG_CHANNEL)
         text = f"""**__What do you want me to do with this file.?__**\n\n**File Name** :- `{filename}`\n\n**File Size** :- `{filesize}`"""
 
         buttons = [[InlineKeyboardButton("Rᴇɴᴀᴍᴇ 📝", callback_data=f"rename-{message.from_user.id}")],

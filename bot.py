@@ -22,7 +22,7 @@ class Bot (Client):
 
     def __init__(self):
         super().__init__(
-            name="SnowEncoderBot",
+            name="PandaBot",
             in_memory=True,
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
@@ -50,7 +50,6 @@ class Bot (Client):
                 date = curr.strftime('%d %B, %Y')
                 time = curr.strftime('%I:%M:%S %p')
                 await self.send_message(Config.LOG_CHANNEL, f"**__{me.mention} Iꜱ Rᴇsᴛᴀʀᴛᴇᴅ !!**\n\n📅 Dᴀᴛᴇ : `{date}`\n⏰ Tɪᴍᴇ : `{time}`\n🌐 Tɪᴍᴇᴢᴏɴᴇ : `Asia/Kolkata`\n\n🉐 Vᴇʀsɪᴏɴ : `v{__version__} (Layer {layer})`</b>")
-                await self.send_message(Config.SAVE_CHANNEL, f"{date} \n Hello")
             except:
                 print("Pʟᴇᴀꜱᴇ Mᴀᴋᴇ Tʜɪꜱ Iꜱ Aᴅᴍɪɴ Iɴ Yᴏᴜʀ Lᴏɢ Cʜᴀɴɴᴇʟ")
 
